@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="shop_products_category_view_tree" model="ir.ui.view">
+        <field name="name">shop.products.category.tree</field>
+        <field name="model">shop.products.category</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Tên danh mục"/>
+                <field name="status" string="Trạng thái" widget="badge"
+                       decoration-success="status == 'show'"
+                       decoration-danger="status == 'hidden'"/>
+                <field name="create_date" string="Ngày khởi tạo"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="shop_products_category_view_search" model="ir.ui.view">
+        <field name="name">shop.products.category.search</field>
+        <field name="model">shop.products.category</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Tên danh mục"/>
+                <group>
+                    <filter name="status" string="Trạng thái" context="{'group_by':'status'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="shop_products_category_view_form" model="ir.ui.view">
+        <field name="name">shop.products.category.form</field>
+        <field name="model">shop.products.category</field>
+        <field name="arch" type="xml">
+            <form delete="0">
+                <header>
+                    <!--                    <button name="show" string="Hiển thị" type="object" class="oe_highlight"/>-->
+                    <!--                    <button name="hidden" string="Ẩn" type="object"/>-->
+                </header>
+                <field name="name" string="Tên danh mục"/>
+                <field name="status" string="Trạng thái"/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_shop_products_category" model="ir.actions.act_window">
+        <field name="name">Quản lý danh mục</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">shop.products.category</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first category !
+            </p>
+        </field>
+    </record>
+
+<!--    <menuitem id="menu_category_master" name="Quản lý danh mục" action="action_shop_products_category" parent="menu_shop_root"-->
+<!--              sequence="10"/>-->
+
+
+</odoo>

@@ -1,0 +1,4 @@
+{
+    'name': 'Hospital',
+    'application': True,
+}

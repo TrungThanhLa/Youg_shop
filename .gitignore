@@ -1,0 +1,5 @@
+config
+custom_addons
+odoo-16.0
+venv
+odoo_pg_pass

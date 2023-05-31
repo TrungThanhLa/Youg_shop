@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+    <record id="view_all_news_tree" model="ir.ui.view">
+        <field name="name">shop.new.tree</field>
+        <field name="model">shop.new</field>
+        <field name="arch" type="xml">
+            <tree sample="1">
+                    <!-- <field name="number_id" string="STT"/> -->
+                    <field name="title" string="Tên bài viết" />
+                    <field name="create_uid" string="Người viết bài" />
+                    <field name="create_date" string="Ngày đăng" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_all_news_search" model="ir.ui.view">
+        <field name="name">shop.new.search</field>
+        <field name="model">shop.new</field>
+        <field name="arch" type="xml">
+            <search>
+                <!-- <field name="ref" string="Mã sản phẩm"/> -->
+                <field name="title" string="Tên bài viết" />
+                <!-- <field name="category" string="Danh mục" /> -->
+                <!-- <group expand="0" string="Group By">
+                    <filter string="Danh mục" name="group_by_category" context="{'group_by':'category'}" />
+                </group> -->
+            </search>
+        </field>
+    </record>
+
+    <record id="view_all_news_form" model="ir.ui.view">
+        <field name="name">shop.new.form</field>
+        <field name="model">shop.new</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="image" widget="image" class="oe_avatar" />
+                <group>
+                    <group>
+                        <field name="title" />
+                        <field name="description"/>
+                    </group>
+                    <!-- <group>
+                        <field name="category"/>
+                    </group> -->
+                </group>
+                <notebook>
+                    <page string="Bài viết" name="post">
+                        <field name="post" placeholder="Viết gì đó...." options="{'collaborative': true, 'codeview': true }" />
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_shop_new" model="ir.actions.act_window">
+        <field name="name">Quản lý tin tức</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">shop.new</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face" >
+                Create your first new !
+            </p>
+        </field>
+    </record>
+
+    <!-- <menuitem id="menu_shop_new" name="Shop News" parent="menu_shop_products_master"  sequence="0" /> -->
+
+
+</odoo>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="shop_category" name="Trang sản phẩm | Youg Clothing">
+        <t t-call="website.layout">
+            <!-- <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/css" href="/youg_shop/static/src/css/style.css" />
+            </xpath> -->
+            <div class="container" id="product_page">
+                <div class="Title">
+                    <h3>Trang Sản Phẩm</h3>
+                </div>
+
+                <div class="category">
+                    <ul>
+                        <button class="button_cate" id="check_cate" href="/products">
+                            <i class="fa fa-th-list icon" aria-hidden="true" style="line-height: 1px;"></i>
+                        </button>
+                        <div class="cate_box">
+                            <li class="list_item">
+                                <a href="/products" style=" display: block; padding: 5px 20px;">Sản phẩm</a>
+                            </li>
+                            <t t-foreach="category" t-as="cate">
+                                <li class="list_item">
+                                    <a t-attf-href="/products/{{cate.id}}" t-esc="cate.name"
+                                       style=" display: block; padding: 5px 20px;"></a>
+                                </li>
+                            </t>
+                        </div>
+                    </ul>
+                </div>
+
+                <div class="r_ow">
+                    <t t-foreach="products" t-as="products">
+                        <div class="Product_block">
+                            <div class="Image">
+                                <img t-attf-src="data:image/png;base64,#{products.image}" t-if="products.image"
+                                     style="width: 350px; height: 450px; object-fit: cover;" alt="products.name"/>
+                            </div>
+                            <div class="AddCart">
+                                <button class="AddCart_Button" t-attf-data-name="#{products.name}"
+                                        t-attf-data-price="#{products.price}" t-attf-data-image="#{products.image}"
+                                        t-attf-data-id="#{products.id}">Thêm vào giỏ hàng
+                                </button>
+                            </div>
+                            <div class="Product_info">
+                                <div class="Product_name">
+                                    <a t-attf-href="/product/detail/{{ products.id }}">
+                                        <t t-esc="products.name"/>
+                                    </a>
+                                    <!-- <t t-esc="products.id" /> -->
+                                </div>
+                                <div class="Price">
+                                    <a t-attf-href="/product/detail/{{ products.id }}">
+                                        <span>$</span>
+                                        <t t-esc="products.price"/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- Products Page -->
+    <template id="shop_products" name="Trang sản phẩm | Youg Clothing">
+        <t t-call="website.layout">
+            <!-- <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/css" href="/youg_shop/static/src/css/style.css" />
+            </xpath> -->
+            <div class="container" id="product_page">
+                <div class="Title">
+                    <h3>Trang Sản Phẩm</h3>
+                </div>
+                <div class="row">
+                    <div class="filter">
+                        <div class="heading5">
+                            <h4>Bộ lọc</h4>
+                        </div>
+<!--                        <form method="GET" >-->
+                        <div class="cate_box">
+                            <div class="button_cate_block">
+                                <button class="button_cate" href="#">Danh mục</button>
+                            </div>
+                            <ul class="ul_cate">
+                                <t t-foreach="category" t-as="cate">
+                                    <li class="list_item">
+                                        <a class="anchor_cate" t-attf-href="/products/{{cate.id}}" t-esc="cate.name"
+                                           style=" display: block; padding: 10px 20px;"></a>
+                                    </li>
+                                </t>
+                            </ul>
+                        </div>
+                        <div class="cate_box">
+                            <div class="button_cate_block">
+                                <button class="button_cate" href="#">Màu sắc</button>
+                            </div>
+                            <ul class="ul_cate">
+                                    <li class="list_cate"><label for="black" ><input type="checkbox" id="black" value="0" /> Đen</label></li>
+                                    <li class="list_cate"><label for="white" ><input type="checkbox" id="white" value="1" /> Trắng</label></li>
+                                    <li class="list_cate"><label for="red" ><input type="checkbox" id="red" value="2" /> Đỏ</label></li>
+                                    <li class="list_cate"><label for="green" ><input type="checkbox" id="green" value="3" /> Xanh lá</label></li>
+                                    <li class="list_cate"><label for="bluesea" ><input type="checkbox" id="bluesea" value="3" /> Xanh biển</label></li>
+                            </ul>
+                        </div>
+                        <div class="cate_box">
+                            <div class="button_cate_block">
+                                <button class="button_cate" href="#">Mùa</button>
+                            </div>
+                            <ul class="ul_cate">
+                                <li class="list_cate"><label for="spring" ><input type="checkbox" id="spring" value="0" /> Xuân</label></li>
+                                <li class="list_cate"><label for="summer" ><input type="checkbox" id="summer" value="1" /> Hạ</label></li>
+                                <li class="list_cate"><label for="autumn" ><input type="checkbox" id="autumn" value="2" /> Thu</label></li>
+                                <li class="list_cate"><label for="winter" ><input type="checkbox" id="winter" value="3" /> Đông</label></li>
+                                <li class="list_cate"><label for="all" ><input type="checkbox" id="all" value="4" /> All</label></li>
+                            </ul>
+                        </div>
+                        <div class="apply_filter" >
+                            <form action="/products" method="GET" >
+                                <li class="list_cate"><label for="spring" ><input type="checkbox" name="spring" id="spring" value="0" /> Xuân</label></li>
+                                <li class="list_cate"><label for="summer" ><input type="checkbox" id="summer" value="1" /> Hạ</label></li>
+                                <li class="list_cate"><label for="autumn" ><input type="checkbox" id="autumn" value="2" /> Thu</label></li>
+                                <li class="list_cate"><label for="winter" ><input type="checkbox" id="winter" value="3" /> Đông</label></li>
+                                <li class="list_cate"><label for="all" ><input type="checkbox" id="all" value="4" /> All</label></li>
+                            <input type="submit" name="submit" value="Áp dụng bộ lọc" />
+                            </form>
+                            <t t-esc="value" />
+                        </div>
+<!--                        </form>-->
+                    </div>
+                    <div class="products_block_container">
+                        <div class="feature">
+                            <select class="select_feature" >
+                                <option>Lọc theo</option>
+                                <option value="a-z">A-Z</option>
+                                <option value="z-a">Z-A</option>
+                                <option value="top_sell">Bán chạy</option>
+                                <option value="newest">Mới nhất</option>
+                                <option value="high_to_low">Giá cao đến thấp</option>
+                                <option value="low_to_high">Giá thấp đến cao</option>
+                            </select>
+                        </div>
+                        <div class="r_ow">
+                            <t t-foreach="products" t-as="products">
+                                <div class="product_block">
+                                    <div class="image">
+                                        <img t-attf-src="data:image/png;base64,#{products.image}" t-if="products.image"
+                                             style="width: 250px; height: 350px; object-fit: cover;"
+                                             alt="products.name"/>
+                                    </div>
+                                    <div class="addCart">
+                                        <button class="addCart_Button" t-attf-data-name="#{products.name}"
+                                                t-attf-data-price="#{products.price}"
+                                                t-attf-data-image="#{products.image}"
+                                                t-attf-data-id="#{products.id}">Thêm vào giỏ hàng
+                                        </button>
+                                    </div>
+                                    <div class="product_info">
+                                        <div class="product_name">
+                                            <a t-attf-href="/product/detail/{{ products.id }}">
+                                                <t t-esc="products.name"/>
+                                            </a>
+                                            <!-- <t t-esc="products.id" /> -->
+                                        </div>
+                                        <div class="price">
+                                            <a t-attf-href="/product/detail/{{ products.id }}">
+                                                <span>$</span>
+                                                <t t-esc="products.price"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="detail_products" name="Trang chi tiết sản phẩm | Youg Clothing Store">
+        <t t-call="website.layout">
+            <!-- <xpath expr="." position="inside"> -->
+
+            <t t-set="head">
+                <!-- <link rel="stylesheet" type="text/css" href="/youg_shop/static/src/css/style.css" /> -->
+                <!-- <t t-call-assets="youg_shop.products_assets_frontend" /> -->
+            </t>
+            <div class="container">
+                <!-- <div class="Title" >
+                    <h3>Trang chi tiết sản phẩm</h3>
+                </div>
+                <div class="Image">
+                    <img t-attf-src="data:image/png;base64,#{detail_products.image}" t-if="detail_products.image"
+                        style="width: 350px; height: 420px; object-fit: cover;" alt="detail_products.name"/>
+                </div>
+                <div class="Product_info">
+                    <div class="Product_name">
+                        <t t-esc="detail_products.name"/>
+                        <t t-esc="detail_products.id" />
+                    </div>
+                    <div class="Price">
+                        <t t-esc="detail_products.price"/><span> $</span>
+                    </div>
+                </div> -->
+                <div class="oe_structure" id="product_detail" t-attf-data-name="#{detail_products.name}"
+                     t-attf-data-price="#{detail_products.price}" t-attf-data-image="#{detail_products.image}"
+                     t-attf-data-id="#{detail_products.id}">
+                    <section class="s_text_image pt32 pb32 o_colored_level" data-snippet="s_image_text"
+                             data-name="Image - Text" style="background-image: none;">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="pt16 pb16 col-lg-5 offset-lg-1 o_colored_level">
+                                    <img t-attf-src="data:image/png;base64,#{detail_products.image}"
+                                         t-if="detail_products.image" class="img img-fluid mx-auto"
+                                         alt="" loading="lazy" data-original-id="383"
+                                         data-original-src="/theme_graphene/static/src/img/pictures/content_03.jpg"
+                                         data-mimetype="image/jpeg" style="width: 333px; height: 444px;"/>
+                                </div>
+                                <div class="pt16 pb16 col-lg-4 offset-lg-1 o_colored_level">
+                                    <h2 class="o_default_snippet_text" id="pro_name">
+                                        <t t-esc="detail_products.name"/>
+                                    </h2>
+                                    <div class="s_hr text-start pt16 pb0" data-snippet="s_hr" data-name="Separator">
+                                        <hr class="w-100 mx-auto"
+                                            style="border-top-width: 1px; border-top-style: solid; border-top-color: rgba(0, 0, 0, 0) !important;"/>
+                                    </div>
+                                    <p class="o_default_snippet_text">
+                                        <b>Danh mục:
+                                            <t t-esc="detail_products.category_id.name"/>
+                                        </b>
+                                    </p>
+                                    <hr/>
+                                    <div class="price_products">
+                                        <span>
+                                            <b>Giá:</b>
+                                        </span>
+                                        <span class="o_default_snippet_text">
+                                            <span>$</span>
+                                            <t t-esc="detail_products.price"/>
+                                        </span>
+                                    </div>
+                                    <hr/>
+                                    <div class="quantity_input">
+                                        <p>Số lượng sản phẩm:</p>
+                                        <input type="number" min="1" id="quantity_value" value="1"
+                                               style="width: 20%; text-align: center; margin-left: 20px; margin-bottom: 20px;"/>
+                                    </div>
+                                    <p>
+                                        <a href="#" class="btn btn-primary mb-2 btn-lg o_default_snippet_text"
+                                           id="addToCart">Thêm vào giỏ hàng
+                                        </a>
+                                    </p>
+                                    <div class="s_hr text-start p0 pb32" data-snippet="s_hr" data-name="Separator">
+                                        <hr class="w-100 mx-auto"
+                                            style="border-top-width: 1px; border-top-style: solid; border-top-color: var(--o-color-3) !important;"/>
+                                    </div>
+
+                                    <div class="description">
+                                        <p>
+                                            <b>Mô tả sản phẩm</b>
+                                        </p>
+                                        <p class="o_default_snippet_text">
+                                            <t t-esc="detail_products.description"/>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <!-- <record id="shop_products" model="website.page">
+        <field name="name">Sản phẩm</field>
+        <field name="website_published">True</field>
+        <field name="url">/products</field>
+        <field name="type">qweb</field>
+        <field name="key">theme_tutorial.services_page</field>
+        <field name="arch" type="xml">
+            <t t-name="theme_tutorial.services_page_template">
+                <t t-call="website.layout">
+                    <div id="wrap">
+                        <div class="container">
+                            <h1>Our Services</h1>
+                            <ul class="services">
+                                <li>Cloud Hosting</li>
+                                <li>Support</li>
+                                <li>Unlimited space</li>
+                            </ul>
+                        </div> -->
+    <!-- === Snippets' area === -->
+    <!-- <div class="oe_structure" />
+</div>
+</t>
+</t>
+</field>
+
+</record>
+
+<record id="service_link" model="website.menu">
+<field name="name" >Sản phẩm</field>
+<field name="page_id" ref="shop_products"></field>
+<field name="parent_id" ref="website.main_menu"></field>
+<field name="sequence" type="int">90</field>
+</record> -->
+    <!-- <script src=></script> -->
+</odoo>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="shop_cart" name="Giỏ hàng | Youg Clothing Store">
+        <t t-call="website.layout">
+
+            <t t-set="head">
+            </t>
+            <div class="container" style="margin: 30px 0px" id="my_cart">
+                <div class="order_process" style="text-align:center">
+                    <p id="existLengthCart">Giỏ hàng có <b id="lengthCart"></b> sản phẩm
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="order_table" style="width: 70%; height: 550px; overflow: hidden; overflow-y: scroll;">
+                        <table border="0px" cellspacing="0px" cellpadding="8px">
+                            <thead>
+                                <tr>
+                                    <th>Ảnh sản phẩm</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Đơn giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cart_info">
+
+                                <!-- FETCH DATA HERE -->
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="order_total" id="orderTotal"
+                         style="width: 30%;height: fit-content;position: relative;top: 15px;">
+                        <div class="Heading_Total"
+                             style="border-bottom: 1px solid darkgray; padding: 10px 0px; margin-top: -13px; width: 87.5%;">
+                            <h4>Order Total</h4>
+                        </div>
+                        <table border="0" cellspacing="0px" cellpadding="8px">
+                            <tr style="border-bottom: 0px;">
+                                <td style="padding-left: 100px;">Subtotal:</td>
+                                <td style="padding-left: 80px;">$
+                                    <span id="subTotal"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 100px;">Taxes:</td>
+                                <td style="padding-left: 80px;">$
+                                    <span id="taxes"></span>
+                                </td>
+                            </tr>
+                            <tr style="border-bottom: 0px;">
+                                <td style="padding-left: 100px;">
+                                    <b>Total:</b>
+                                </td>
+                                <td style="padding-left: 80px;">
+                                    <b>$
+                                        <span id="total"></span>
+                                    </b>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row" style="margin: 30px 0px;">
+                    <div class="Continue" id="shopping" style="width: 50%;">
+                        <a href="/products"  class="Payment">Continue Shopping</a>
+                    </div>
+                    <div class="Checkout" id="checkout" style="width: 50%;">
+                        <a href="/checkout"  class="Payment" style="margin-left: 275px;">Process Checkout</a>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

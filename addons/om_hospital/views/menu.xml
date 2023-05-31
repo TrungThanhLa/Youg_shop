@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <menuitem id="menu_hospital_root" name="Hospital" sequence="0"/>
+    <menuitem id="menu_patient_master"  name="Patient Details" parent="menu_hospital_root" sequence="0"/>
+    <!-- <menuitem id="menu_patient" name="Patient" parent="menu_patient_master" action="action_hospital_patient" sequence="0" /> -->
+    <!-- <menuitem id="menu_female_patient" name="Female Patient" parent="menu_patient_master" action="action_hospital_female_patient" sequence="2" /> -->
+    <menuitem id="menu_appointment_master" name="Appointments" parent="menu_hospital_root" sequence="20" />
+    <menuitem id="menu_patient_tag_master" name="Configurations" parent="menu_hospital_root" sequence="30" />
+    <menuitem id="menu_cancel_appoinment" name="Cancellation" parent="menu_appointment_master" action="action_cancel_appointment" sequence="50" />
+</odoo>

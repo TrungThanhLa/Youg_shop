@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <!-- Main Menu -->
+    <menuitem id="menu_shop_root" name="Shop Youg" sequence="0" />
+    <!-- Window Action -->
+    <!-- Products -->
+    <menuitem id="menu_shop_products_master" name="Quản lý sản phẩm" parent="menu_shop_root" action="action_all_products" sequence="0" />
+    <!-- News -->
+    <menuitem id="menu_shop_new_master" name="Quản lý tin tức" parent="menu_shop_root" action="action_shop_new" sequence="20" />
+    <!-- Cart -->
+    <menuitem id="menu_shop_cart_master" name="Quản lý đơn hàng" parent="menu_shop_root" action="action_shop_cart" sequence="30"  />
+    <!-- User-->
+    <menuitem id="menu_user_master" name="Quản lý người dùng" parent="menu_shop_root" sequence="40" />
+    <!--Category-->
+    <menuitem id="menu_category_master" name="Quản lý danh mục" action="action_shop_products_category" parent="menu_shop_root" sequence="10"/>
+    <!--Special Products-->
+    <menuitem id="menu_special_products_master" name="Sản phẩm trong tuần" parent="menu_shop_products_master" action="action_special_products" sequence="10"/>
+
+</odoo>

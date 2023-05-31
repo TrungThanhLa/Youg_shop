@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- News Page -->
+     <template id="shop_news" name="Trang tin tức | Youg Clothing" >
+        <t t-call="website.layout" >
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/css" href="/youg_shop/static/src/css/style_2.css" />
+            </xpath>
+            <div class="container">
+                <div class="Title" >
+                    <h3 style="color: #18907D;" >Trang tin tức</h3>
+                </div>
+
+                <div class="r_ow" >
+                    <t t-foreach="news" t-as="news">
+                        <section class="s_media_list pt30 pb30 o_cc o_colored_level" data-vcss="001" data-snippet="s_media_list" data-name="Media List" style="background-image: none;">
+                            <div class="container">
+                                <div class="row s_nb_column_fixed s_col_no_bgcolor">
+                                    <div class="col-lg-12 s_media_list_item pt16 pb16" data-name="Media item">
+                                        <div class="row s_col_no_resize s_col_no_bgcolor g-0 align-items-center o_cc o_cc1 o_colored_level">
+                                            <div class="col-lg-4 align-self-stretch s_media_list_img_wrapper">
+                                                <a t-attf-href="/news/new_detail/{{ news.id }}">
+                                                    <img t-attf-src="data:image/png;base64,#{news.image}" t-if="news.image" class="s_media_list_img"
+                                                    alt="" loading="lazy" data-original-id="208" data-original-src="/website/static/src/img/snippets_demo/s_media_list_1.jpg"
+                                                    data-mimetype="image/jpeg" style="width: 330px; height:230px; "/>
+                                                </a>
+                                            </div>
+                                            <div class="col-lg-8 s_media_list_body">
+                                                <a t-attf-href="/news/new_detail/{{ news.id }}">
+                                                    <h3><t t-esc="news.title"/></h3>
+                                                </a>
+                                                <p class="o_default_snippet_text"><t t-esc="news.description"/></p>
+                                                <a t-attf-href="/news/new_detail/{{ news.id }}" class="btn btn-primary mb-2 o_default_snippet_text">Xem ngay</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="detail_news" name="Trang chi tiết tin tức | Youg Clothing Store">
+        <t t-call="website.layout">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/css" href="/youg_shop/static/src/css/style.css" />
+            </xpath>
+            <section class="s_media_list pt30 pb30 o_cc o_colored_level" data-vcss="001" data-snippet="s_media_list" data-name="Media List" style="background-image: none;">
+                <div class="container" style="width: 70%; margin: 0px auto;" >
+                    <div class="Title" >
+                        <h3><t t-esc="new_detail.title"/></h3>
+                    </div>
+                    <div class="Description" >
+                        <p style="font-style: italic;" ><t t-esc="new_detail.description"/></p>
+                        <p style="font-weight: bold;">Bài viết:</p>
+                    </div>
+                    <div class="Content" >
+                        <p><t t-esc="new_detail.post"/></p>
+                    </div>
+
+                </div>
+            </section>
+        </t>
+    </template>
+    
+
+</odoo>

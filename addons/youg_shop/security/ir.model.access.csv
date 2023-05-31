@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access.shop.products,access_shop_products,youg_shop.model_shop_products,base.group_user,1,1,1,1
+access.shop.new,access_shop_new,youg_shop.model_shop_new,base.group_user,1,1,1,1
+access.shop.cart,access_shop_cart,youg_shop.model_shop_cart,base.group_user,1,1,1,1
+access.shop.cart.detail,access_shop_cart_detail,youg_shop.model_shop_cart_detail,base.group_user,1,1,1,1
+access.user.management,access_user_management,youg_shop.model_user_management,base.group_user,1,1,1,1
+access.shop.products.category, access_shop_products_category,youg_shop.model_shop_products_category,base.group_user,1,1,1,1
+access.shop.category, access_shop_category,youg_shop.model_shop_category,base.group_user,1,1,1,1
+access.shop.special.products, access_shop_special_products,youg_shop.model_shop_special_products,base.group_user,1,1,1,1

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+    <record id="view_user_management_tree" model="ir.ui.view">
+        <field name="name">user.management.tree</field>
+        <field name="model">user.management</field>
+        <field name="arch" type="xml">
+            <tree sample="1" multi_edit="1" delete="0"
+                     decoration-success="state == 'activate'"
+                     decoration-danger="state == 'disable'"
+                     decoration-warning="state == 'not_activated'">
+
+                    <field name="name" string="Tên người dùng"/>
+                    <field name="role" string="Vai trò" />
+                    <field name="gender" string="Giới tính" />
+                    <field name="age" string="Tuổi" />
+                    <field name="state" string="Trạng thái" widget="badge"
+                      decoration-success="state == 'activate'"
+                     decoration-danger="state == 'disable'"
+                     decoration-warning="state == 'not_activated'"/>
+                     <field name="create_date" string="Ngày khởi tạo" />
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_user_management_search" model="ir.ui.view">
+        <field name="name">user.management.search</field>
+        <field name="model">user.management</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Tên người dùng"/>
+                <group expand="0" string="Group By">
+                    <filter string="Vai trò" name="group_by_role" context="{'group_by':'role'}"/>
+                    <filter string="Giới tính" name="group_by_gender" context="{'group_by':'gender'}"/>
+                    <filter string="Trạng thái" name="group_by_state" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_user_management_form" model="ir.ui.view">
+        <field name="name">user.management.form</field>
+        <field name="model">user.management</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_activate" string="Kích hoạt" type="object" states="not_activate" class="oe_highlight"  />
+                    <button name="action_disable" string="Hủy kích hoạt" type="object" states="activate" confirm="Bạn có chắc chắn hủy kích hoạt không ?" class="oe_highlight" />
+                    <button name="action_not_activate" string="Reset" type="object" states="disable" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" nolabel="1" statusbar_visible="not_activate" />
+                </header>
+                <field name="image" widget="image" class="oe_avatar" />
+                <group>
+                    <group>
+                        <field name="name" />
+                        <field name="gender" />
+                        <field name="date_of_birth" />
+                        <field name="age" />
+                    </group>
+                    <group>
+                        <field name="role" />
+                        <field name="address"/>
+                         <field name="create_date" string="Ngày tạo" readonly="1" />
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_user_management" model="ir.actions.act_window">
+        <field name="name">Quản lý người dùng</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">user.management</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face" >
+                Create your first user !
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_all_user_management" name="Tất cả ngưởi dùng" parent="menu_user_master" action="action_user_management" sequence="0" />
+
+
+</odoo>
