@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="view_product_color_tree" model="ir.ui.view">
+        <field name="name">products.color.tree</field>
+        <field name="model">products.color</field>
+        <field name="arch" type="xml">
+            <tree sample="1">
+                <field name="name" string="Tên màu sản phẩm"/>
+                <field name="color" string="Màu 1" widget="color_picker"/>
+                <field name="color_2" string="Màu 2" widget="color" optional="hide"/>
+<!--                <field name="color_2" string="Mã màu phụ" optional="hide"/>-->
+                <field name="active" string="Active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_product_color_search" model="ir.ui.view">
+        <field name="name">products.color.search</field>
+        <field name="model">products.color</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Tên màu sản phẩm"/>
+                <field name="color_2" string="Mã màu"/>
+<!--                <field name="color" string="Màu 1"/>-->
+            </search>
+        </field>
+    </record>
+
+    <record id="view_product_color_form" model="ir.ui.view">
+        <field name="name">products.color.form</field>
+        <field name="model">products.color</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="active" widget="boolean-toggle" />
+                    </group>
+                    <group>
+                        <field name="color" widget="color_picker" />
+                        <field name="color_2" widget="color" />
+                        <field name="color_2" string="Mã màu phụ" />
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_product_color" model="ir.actions.act_window">
+        <field name="name">Quản lý màu sản phẩm</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">products.color</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first color !
+            </p>
+        </field>
+    </record>
+
+<!--    <menuitem id="menu_product_color_master" name="Quản lý màu sản phẩm" parent="menu_shop_products_master"-->
+<!--              action="action_product_color" sequence="20"/>-->
+
+
+</odoo>

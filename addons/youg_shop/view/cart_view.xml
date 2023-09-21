@@ -7,20 +7,20 @@
         <field name="model">shop.cart</field>
         <field name="arch" type="xml">
             <tree sample="1" multi_edit="1"
-                  decoration-success="state == '4'"
-                  decoration-info="state == '2' or state == '3'"
-                  decoration-danger="state == '5' or state == '6'"
-                  decoration-warning="state == '1'"
-                  decoration-muted="state == '0'">
+                  decoration-success="state == 'success'"
+                  decoration-info="state == 'shipping_unit' or state == 'shipping'"
+                  decoration-danger="state == 'deli_fail' or state == 'cancel'"
+                  decoration-warning="state == 'processing'"
+                  decoration-muted="state == 'starting'">
 
                 <field name="user_id" string="Tên khách hàng"/>
                 <!--<field name="email" string="Email" />-->
                 <field name="state" string="Trạng thái đơn hàng" widget="badge"
-                       decoration-success="state == '4'"
-                       decoration-info="state == '2' or state == '3'"
-                       decoration-danger="state == '5' or state == '6'"
-                       decoration-warning="state == '1'"
-                       decoration-muted="state == '0'"/>
+                       decoration-success="state == 'success'"
+                       decoration-info="state == 'shipping_unit' or state == 'shipping'"
+                       decoration-danger="state == 'deli_fail' or state == 'cancel'"
+                       decoration-warning="state == 'processing'"
+                       decoration-muted="state == 'starting'"/>
                 <field name="create_date" string="Ngày khởi tạo"/>
             </tree>
         </field>
@@ -45,16 +45,16 @@
         <field name="arch" type="xml">
             <form delete="0">
                 <header>
-                    <button name="action_in_process" string="Đang xử lý" type="object" states="0" class="oe_highlight"/>
-                    <button name="action_to_deliver" string="Đã giao cho đơn vị vận chuyển" type="object" states="1"
+                    <button name="action_in_process" string="Đang xử lý" type="object" states="starting" class="oe_highlight"/>
+                    <button name="action_to_deliver" string="Đã giao cho đơn vị vận chuyển" type="object" states="processing"
                             class="oe_highlight"/>
-                    <button name="action_delivery" string="Đang giao hàng" type="object" states="2"
+                    <button name="action_delivery" string="Đang giao hàng" type="object" states="shipping_unit"
                             class="oe_highlight"/>
-                    <button name="action_delivery_success" string="Giao hàng thành công" type="object" states="3"
+                    <button name="action_delivery_success" string="Giao hàng thành công" type="object" states="shipping"
                             class="oe_highlight" confirm="Bạn có chắc chắn không ?"/>
-                    <button name="action_cancel" string="Hủy đơn hàng" type="object" states="0,1,2"/>
-                    <button name="action_fail" string="Giao hàng thất bại" type="object" states="3"/>
-                    <field name="state" widget="statusbar" nolabel="1" statusbar_visible="0,1,2,3,4"/>
+                    <button name="action_cancel" string="Hủy đơn hàng" type="object" states="starting ,processing, shipping_unit"/>
+                    <button name="action_fail" string="Giao hàng thất bại" type="object" states="shipping"/>
+                    <field name="state" widget="statusbar" nolabel="1" statusbar_visible="starting, processing, shipping_unit, shipping, success"/>
                 </header>
                 <!-- <field name="image" widget="image" class="oe_avatar" /> -->
                 <group>

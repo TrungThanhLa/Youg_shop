@@ -16,5 +16,7 @@
     <menuitem id="menu_category_master" name="Quản lý danh mục" action="action_shop_products_category" parent="menu_shop_root" sequence="10"/>
     <!--Special Products-->
     <menuitem id="menu_special_products_master" name="Sản phẩm trong tuần" parent="menu_shop_products_master" action="action_special_products" sequence="10"/>
+    <!--Products Color-->
+    <menuitem id="menu_product_color_master" name="Quản lý màu sản phẩm" parent="menu_shop_products_master" action="action_product_color" sequence="20" />
 
 </odoo>

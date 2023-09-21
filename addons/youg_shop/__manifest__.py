@@ -26,6 +26,8 @@
         'view/template_category_view.xml',
         'view/shop_category.xml',
         'view/special_products_view.xml',
+        'view/product_color.xml',
+        'view/test_pie_chart_template.xml',
     ],
     'demo': [],
     'assets': {
@@ -33,23 +35,34 @@
         ],
         'web.assets_frontend': [
             'youg_shop/static/src/js/script.js',
+            'youg_shop/static/src/js/script_dip.js',
             'youg_shop/static/src/css/style.css',
             'youg_shop/static/src/css/style.scss',
-
+            'youg_shop/static/src/css/css/highcharts.css',
+            'youg_shop/static/src/js/highcharts.js',
         ],
         'web.assets_backend': [
             'youg_shop/static/src/js/script.js',
+            'youg_shop/static/src/js/script_dip.js',
+            'youg_shop/static/src/js/highcharts.js',
 
         ],
         'web.report_assets_common': [
         ],
         'web.assets_qweb': [
+            'youg_shop/static/src/js/script_dip.js',
+            'youg_shop/static/src/css/css/highcharts.css',
+            'youg_shop /static/src/js/highcharts.js',
 
         ],
-        # 'youg_shop.products_assets_frontend': [
-        #     'youg_shop/static/src/js/script.js'
+        'youg_shop.test_pie_chart_template_assets_frontend': [
+            'youg_shop/static/src/js/script.js'
+            'youg_shop/static/src/js/highcharts.js',
+            'youg_shop/static/src/css/css/highcharts.css',
+            'youg_shop/static/src/js/script_dip.js',
+            'youg_shop/static/src/css/style.scss',
 
-        # ]
+        ]
     },
     'installable': True,
     'auto_install': False,

@@ -14,5 +14,6 @@ class ShopProducts(models.Model):
     category_id = fields.Many2one('shop.products.category', string="Danh mục", required=True)
     description = fields.Html(string="Mô tả sản phẩm")
     price = fields.Float(string="Giá", required="1")
-    season = fields.Selection([('spring', 'Spring'), ('Summer', 'Summer'), ('Autumn', 'Autumn'),
+    season = fields.Selection([('spring', 'Spring'), ('summer', 'Summer'), ('autumn', 'Autumn'),
                                ('winter', 'Winter'), ('all', 'All')], string="Đồ mùa", required=True)
+    color = fields.Many2many('products.color', string="Màu sản phẩm")

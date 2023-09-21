@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="test_pie_chart" name="Test Pie Chart">
+        <t t-call="website.layout">
+            <div id="test_chart">
+                <div id="container"></div>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -18,41 +18,41 @@ class ShoppingCart(models.Model):
     address = fields.Text(string="Address", required=True)
 
     state = fields.Selection([
-        ('0', 'Đang khởi tạo'),
-        ('1', 'Đang xử lý'),
-        ('2', 'Đã giao cho đơn vị vận chuyển'),
-        ('3', 'Đang giao hàng'),
-        ('4', 'Đã giao hàng'),
-        ('5', 'Giao hàng thất bại'),
-        ('6', 'Hủy đơn hàng'),
-    ], string="Trạng thái đơn hàng", default='0', required=True)
+        ('starting', 'Đang khởi tạo'),
+        ('processing', 'Đang xử lý'),
+        ('shipping_unit', 'Đã giao cho đơn vị vận chuyển'),
+        ('shipping', 'Đang giao hàng'),
+        ('success', 'Đã giao hàng'),
+        ('deli_fail', 'Giao hàng thất bại'),
+        ('cancel', 'Hủy đơn hàng'),
+    ], string="Trạng thái đơn hàng", default='starting', required=True)
 
     cart_detail = fields.One2many('shop.cart.detail', 'cart_id', string="Cart Detail")
     # product_id = fields.Many2many('shop.products', string="Product")
 
     def action_in_process(self):
         for rec in self:
-            rec.state = '1'
+            rec.state = 'processing'
 
     def action_to_deliver(self):
         for rec in self:
-            rec.state = '2'
+            rec.state = 'shipping_unit'
 
     def action_delivery(self):
         for rec in self:
-            rec.state = '3'
+            rec.state = 'shipping'
 
     def action_delivery_success(self):
         for rec in self:
-            rec.state = '4'
+            rec.state = 'success'
 
     def action_cancel(self):
         for rec in self:
-            rec.state = '6'
+            rec.state = 'cancel'
 
     def action_fail(self):
         for rec in self:
-            rec.state = '5'
+            rec.state = 'deli_fail'
 
     @api.model
     def pay_cart(self, **kwargs):

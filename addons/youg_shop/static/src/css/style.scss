@@ -280,24 +280,105 @@ li.list_cate {
 }
 
 .apply_filter {
+  margin-left: 25px;
   margin-top: 50px;
-    display: flex;
-    text-align: center;
-    justify-content: center;
+  display: flex;
+  text-align: center;
+  justify-content: center;
 }
 
 input[type="submit"] {
-    padding: 5px 20px;
-    border-radius: 3px;
-    border: 0.5px solid #30cbb2;
-    background: #30cbb2;
-    transition: ease-in-out 0.2s;
+  padding: 5px 20px;
+  border-radius: 3px;
+  border: 0.5px solid #30cbb2;
+  background: #30cbb2;
+  transition: ease-in-out 0.2s;
 }
 
 input[type="submit"]:hover {
   color: white;
   background: #45cbb4;
 }
+
+button.delete_filter {
+  padding: 5px 36px;
+  border-radius: 3px;
+  border: 0.5px solid #30cbb2;
+  background: #30cbb2;
+  transition: ease-in-out 0.2s;
+}
+
+button.delete_filter:hover {
+  color: white;
+  background: #45cbb4;
+}
+
+.highcharts-container {
+    background-color: #f5f5f5;
+}
+
+rect.highcharts-background {
+  //background-color: white;
+  fill: white;
+}
+
+.highcharts-title {
+    color: #333;
+}
+
+.highcharts-axis-labels {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+.highcharts-series {
+    color: #0072C6;
+}
+
+path.highcharts-point {
+    cursor: pointer;
+    margin-left: 200px;
+}
+
+.highcharts-figure {
+    margin: 0;
+}
+
+#play-controls {
+    max-width: 600px;
+    margin: 1em auto;
+}
+
+#container {
+    height: 600px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+#play-pause-button {
+    margin-left: 10px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    border: 1px solid rgba(2, 117, 255, 1);
+    border-radius: 25px;
+    color: white;
+    background-color: rgba(2, 117, 255, 1);
+    transition: background-color 250ms;
+}
+
+#play-pause-button:hover {
+    background-color: rgba(2, 117, 255, 0.5);
+}
+
+#play-range {
+    transform: translateY(2.5px);
+    width: calc(100% - 90px);
+    background: #f8f8f8;
+}
+
+
+
 
 
 

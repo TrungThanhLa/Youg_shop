@@ -6,3 +6,4 @@ from . import user
 from . import category
 from . import shop_category
 from . import special_products
+from . import color

@@ -1,32 +1,60 @@
 from odoo import http
 from odoo.http import request
+from werkzeug.utils import redirect
+from werkzeug.urls import url_encode
 import logging
 
-
 _logger = logging.getLogger(__name__)
+
 
 class YougShop(http.Controller):
 
     @http.route('/products', website=True, auth='public', type='http', method=['GET'])
     def shop_products(self, **kwargs):
-        # rec = http.request.env['shop.products'].search([])
         products = http.request.env['shop.products'].sudo().search([], order='create_date DESC')
-        value = str(kwargs.get('value'))
         category = http.request.env['shop.products.category'].sudo().search([('status', '=', 'show')])
         shop_cart_details = http.request.env['shop.cart.detail'].sudo().search([])
+        color = http.request.env['products.color'].sudo().search([])
+        season = request.httprequest.args.getlist('season')
+        if season and color or season or color:
+            pro = []
+            for season_val in season:
+                # _logger.info(season_val)
+                for pro_season in products:
+                    # _logger.info(pro_season.season)
+                    if pro_season.season == season_val:
+                        pro.append(pro_season)
+                        _logger.info(pro_season.season)
+                        # print('Hello')
+        else:
+            pro = http.request.env['shop.products'].sudo().search([], order='create_date DESC')
+
         return request.render('youg_shop.shop_products', {
-            'products': products,
+            'products': pro,
             'category': category,
             'shop_cart_details': shop_cart_details,
-            'value': value
+            'color': color,
         })
 
     @http.route(['/products/<int:category_id>'], website=True, auth='public', type='http')
     def shop_category(self, category_id):
         products = http.request.env['shop.products'].sudo().search([('category_id', '=', category_id)])
         category = http.request.env['shop.products.category'].sudo().search([('status', '=', 'show')])
+        season = request.httprequest.args.getlist('season')
+        if season:
+            pro = []
+            for season_val in season:
+                # _logger.info(season_val)
+                for pro_season in products:
+                    # _logger.info(pro_season.season)
+                    if pro_season.season == season_val:
+                        pro.append(pro_season)
+                        _logger.info(pro_season.season)
+                        # print('Hello')
+        else:
+            pro = http.request.env['shop.products'].sudo().search([('category_id', '=', category_id)])
         return request.render('youg_shop.shop_category', {
-            'products': products,
+            'products': pro,
             'category': category,
         })
 
@@ -77,3 +105,11 @@ class YougShop(http.Controller):
             'cart_checkout': cart_checkout,
             # 'user': user,
         })
+
+    @http.route('/test', website=True, auth='public', type='http')
+    def test(self):
+        hello = 'Hello'
+        return request.render('youg_shop.test_pie_chart', {
+            'hello': hello
+        })
+        # return hello;

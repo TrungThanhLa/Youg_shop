@@ -7,3 +7,4 @@ access.user.management,access_user_management,youg_shop.model_user_management,ba
 access.shop.products.category, access_shop_products_category,youg_shop.model_shop_products_category,base.group_user,1,1,1,1
 access.shop.category, access_shop_category,youg_shop.model_shop_category,base.group_user,1,1,1,1
 access.shop.special.products, access_shop_special_products,youg_shop.model_shop_special_products,base.group_user,1,1,1,1
+access.products.color, access_products_color,youg_shop.model_products_color,base.group_user,1,1,1,1

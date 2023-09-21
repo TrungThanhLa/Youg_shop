@@ -3,7 +3,7 @@
 
 import publicWidget from 'web.public.widget';
 import {session} from '@web/session';
-
+rpc
 let rpc = require('web.rpc');
 
 publicWidget.registry.yougShopProductDetailWidget = publicWidget.Widget.extend({
@@ -25,7 +25,7 @@ publicWidget.registry.yougShopProductDetailWidget = publicWidget.Widget.extend({
         let quantity = document.getElementById("quantity_value");
         // // console.log(quantity);
         cart = get_cart;
-        const checkCart = cart.find((ele) => ele.id == product_data.data('id'));
+        let checkCart = cart.find((ele) => ele.id == product_data.data('id'));
         if (checkCart) {
             cart = JSON.parse(localStorage.getItem("cart")).map((e) => {
                 if (e.id == product_data.data('id')) {
@@ -211,7 +211,15 @@ publicWidget.registry.yougShopCartWidget = publicWidget.Widget.extend({
 publicWidget.registry.yougShopProductWidget = publicWidget.Widget.extend({
     selector: '#product_page',
     events: {
-        'click .AddCart_Button': 'addProductToCart',
+        'click .addCart_Button': 'addProductToCart',
+        'click .filter_click': 'filterProduct',
+        'click #delete_filter': 'deleteFilter',
+        // 'click #filter_apply': 'applyFilter'
+    },
+
+    start: function () {
+        let self = this;
+        self.applyFilter()
     },
 
     addProductToCart: function (ev) {
@@ -253,6 +261,70 @@ publicWidget.registry.yougShopProductWidget = publicWidget.Widget.extend({
             localStorage.setItem("cart", JSON.stringify(cart));
         }
     },
+
+    filterProduct: function (event) {
+        let self = this;
+        // let filter_apply = document.getElementById('filter_apply')
+        let filter_data_id = event.target.dataset.id
+        let filter_data_name = event.target.dataset.name;
+        let filter_target = event.target;
+        // console.log(filter_target)
+        let get_filter = JSON.parse(localStorage.getItem("filter"));
+        // console.log(get_filter)
+        let filter = [];
+        if (get_filter != null) {
+            filter = get_filter
+        } else {
+            filter = []
+        }
+        if (filter_target.checked) {
+            let check = filter.find((ele) => ele.name === filter_data_name)
+            // console.log(check)
+            if (check) {
+                console.log('Hello', filter)
+            } else {
+                let season = {
+                    'id': filter_data_id,
+                    'name': filter_data_name,
+                }
+                filter.push(season)
+                // console.log('xam')
+                // console.log(filter)
+                localStorage.setItem("filter", JSON.stringify(filter))
+            }
+        } else {
+            let newFilter = filter.filter(ele => ele.name !== filter_data_name)
+            console.log(newFilter)
+            localStorage.setItem("filter", JSON.stringify(newFilter))
+            // console.log()
+            // console.log(filter)
+        }
+    },
+
+    applyFilter() {
+        let filter = [];
+        let get_filter = JSON.parse(localStorage.getItem("filter"));
+        let filter_click = document.getElementsByClassName('filter_click')
+        // console.log(filter_click[0].value)
+        if (get_filter != null) {
+            filter = get_filter
+            for (let i = 0; i < filter_click.length; i++) {
+                let check = get_filter.find(ele => ele.name == filter_click[i].value)
+                if (check) {
+                    // filter_click[i].
+                    filter_click[i].parentElement.children[0].checked = 'checked'
+                    console.log(filter_click[i].parentElement.children[0])
+                }
+            }
+
+        }
+    },
+
+    deleteFilter: function() {
+        localStorage.removeItem("filter");
+        window.location = '/products';
+    }
+
 })
 
 publicWidget.registry.yougShopCartCheckoutWidget = publicWidget.Widget.extend({

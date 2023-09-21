@@ -5,59 +5,166 @@
             <!-- <xpath expr="." position="inside">
                 <link rel="stylesheet" type="text/css" href="/youg_shop/static/src/css/style.css" />
             </xpath> -->
-            <div class="container" id="product_page">
+            <div class="container" id="product_page" style="margin-bottom: 30px;">
                 <div class="Title">
                     <h3>Trang Sản Phẩm</h3>
                 </div>
+                <div class="row">
+                    <div class="filter">
+                        <div class="heading5">
+                            <h4>Bộ lọc</h4>
+                        </div>
+                        <form action="/products/category_id" method="GET">
+                            <div class="cate_box">
+                                <div class="button_cate_block">
+                                    <button class="button_cate" href="#">Danh mục</button>
+                                </div>
+                                <ul class="ul_cate">
+                                    <t t-foreach="category" t-as="cate">
+                                        <li class="list_item">
+                                            <a class="anchor_cate" t-attf-href="/products/{{cate.id}}" t-esc="cate.name"
+                                               style=" display: block; padding: 10px 20px;"></a>
+                                        </li>
+                                    </t>
+                                </ul>
+                            </div>
+                            <div class="cate_box">
+                                <div class="button_cate_block">
+                                    <button class="button_cate" href="#">Màu sắc</button>
+                                </div>
+                                <ul class="ul_cate">
+                                    <li class="list_cate">
+                                        <label for="black">
+                                            <input type="checkbox" name="color" id="black" value="0"/>
+                                            Đen
+                                        </label>
+                                    </li>
+                                    <li class="list_cate">
+                                        <label for="white">
+                                            <input type="checkbox" name="color" id="white" value="1"/>
+                                            Trắng
+                                        </label>
+                                    </li>
+                                    <li class="list_cate">
+                                        <label for="red">
+                                            <input type="checkbox" name="color" id="red" value="2"/>
+                                            Đỏ
+                                        </label>
+                                    </li>
+                                    <li class="list_cate">
+                                        <label for="green">
+                                            <input type="checkbox" name="color" id="green" value="3"/>
+                                            Xanh lá
+                                        </label>
+                                    </li>
+                                    <li class="list_cate">
+                                        <label for="bluesea">
+                                            <input type="checkbox" name="color" id="bluesea" value="3"/>
+                                            Xanh biển
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="cate_box">
+                                <div class="button_cate_block">
+                                    <button class="button_cate" href="#">Mùa</button>
+                                </div>
+                                <ul class="ul_cate">
+                                    <li class="list_cate">
+                                        <label for="spring">
+                                            <input type="checkbox" onload="applyFilter()" class="filter_click"
+                                                   name="season" data-id="0" data-name="spring" value="spring"/>
+                                            Xuân
+                                        </label>
+                                    </li>
+                                    <li class="list_cate">
+                                        <label for="summer">
+                                            <input type="checkbox" onload="applyFilter()" class="filter_click"
+                                                   name="season" data-id="1" data-name="summer" value="summer"/>
+                                            Hạ
+                                        </label>
+                                    </li>
+                                    <li class="list_cate">
+                                        <label for="autumn">
+                                            <input type="checkbox" onload="applyFilter()" class="filter_click"
+                                                   name="season" data-id="2" data-name="autumn" value="autumn"/>
+                                            Thu
+                                        </label>
+                                    </li>
+                                    <li class="list_cate">
+                                        <label for="winter">
+                                            <input type="checkbox" onload="applyFilter()" class="filter_click"
+                                                   name="season" data-id="3" data-name="winter" value="winter"/>
+                                            Đông
+                                        </label>
+                                    </li>
+                                    <li class="list_cate">
+                                        <label for="all">
+                                            <input type="checkbox" onload="applyFilter()" class="filter_click"
+                                                   name="season" data-id="4" data-name="all" value="all"/>
+                                            All
+                                        </label>
+                                    </li>
 
-                <div class="category">
-                    <ul>
-                        <button class="button_cate" id="check_cate" href="/products">
-                            <i class="fa fa-th-list icon" aria-hidden="true" style="line-height: 1px;"></i>
-                        </button>
-                        <div class="cate_box">
-                            <li class="list_item">
-                                <a href="/products" style=" display: block; padding: 5px 20px;">Sản phẩm</a>
-                            </li>
-                            <t t-foreach="category" t-as="cate">
-                                <li class="list_item">
-                                    <a t-attf-href="/products/{{cate.id}}" t-esc="cate.name"
-                                       style=" display: block; padding: 5px 20px;"></a>
-                                </li>
+                                </ul>
+                            </div>
+                            <div class="filter_action_box">
+                                <div class="apply_filter">
+                                    <input type="submit" id="filter_apply" name="submit" value="Áp dụng bộ lọc"/>
+                                </div>
+                                <div class="apply_filter">
+                                    <button class="delete_filter" id="delete_filter" style="margin-top: -20px">Xóa bộ
+                                        lọc
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="products_block_container">
+                        <div class="feature">
+                            <select class="select_feature">
+                                <option>Lọc theo</option>
+                                <option value="a-z">A-Z</option>
+                                <option value="z-a">Z-A</option>
+                                <option value="top_sell">Bán chạy</option>
+                                <option value="newest">Mới nhất</option>
+                                <option value="high_to_low">Giá cao đến thấp</option>
+                                <option value="low_to_high">Giá thấp đến cao</option>
+                            </select>
+                        </div>
+                        <div class="r_ow">
+                            <t t-foreach="products" t-as="products">
+                                <div class="product_block">
+                                    <div class="image">
+                                        <img t-attf-src="data:image/png;base64,#{products.image}" t-if="products.image"
+                                             style="width: 250px; height: 350px; object-fit: cover;"
+                                             alt="products.name"/>
+                                    </div>
+                                    <div class="addCart">
+                                        <button class="addCart_Button" t-attf-data-name="#{products.name}"
+                                                t-attf-data-price="#{products.price}"
+                                                t-attf-data-image="#{products.image}"
+                                                t-attf-data-id="#{products.id}">Thêm vào giỏ hàng
+                                        </button>
+                                    </div>
+                                    <div class="product_info">
+                                        <div class="product_name">
+                                            <a t-attf-href="/product/detail/{{ products.id }}">
+                                                <t t-esc="products.name"/>
+                                            </a>
+                                            <!-- <t t-esc="products.id" /> -->
+                                        </div>
+                                        <div class="price">
+                                            <a t-attf-href="/product/detail/{{ products.id }}">
+                                                <span>$</span>
+                                                <t t-esc="products.price"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </t>
                         </div>
-                    </ul>
-                </div>
-
-                <div class="r_ow">
-                    <t t-foreach="products" t-as="products">
-                        <div class="Product_block">
-                            <div class="Image">
-                                <img t-attf-src="data:image/png;base64,#{products.image}" t-if="products.image"
-                                     style="width: 350px; height: 450px; object-fit: cover;" alt="products.name"/>
-                            </div>
-                            <div class="AddCart">
-                                <button class="AddCart_Button" t-attf-data-name="#{products.name}"
-                                        t-attf-data-price="#{products.price}" t-attf-data-image="#{products.image}"
-                                        t-attf-data-id="#{products.id}">Thêm vào giỏ hàng
-                                </button>
-                            </div>
-                            <div class="Product_info">
-                                <div class="Product_name">
-                                    <a t-attf-href="/product/detail/{{ products.id }}">
-                                        <t t-esc="products.name"/>
-                                    </a>
-                                    <!-- <t t-esc="products.id" /> -->
-                                </div>
-                                <div class="Price">
-                                    <a t-attf-href="/product/detail/{{ products.id }}">
-                                        <span>$</span>
-                                        <t t-esc="products.price"/>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </t>
+                    </div>
                 </div>
             </div>
         </t>

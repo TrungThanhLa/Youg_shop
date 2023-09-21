@@ -55,6 +55,9 @@
                         <field name="description" placeholder="Viết gì đó...."
                                options="{'collaborative': true, 'resizable': true, 'codeview': true }"/>
                     </page>
+                    <page string="Màu sản phẩm" name="color" >
+                        <field name="color"/>
+                    </page>
                 </notebook>
             </form>
         </field>
